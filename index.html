@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eximia — Intelligent Software & AI Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--bg:#F4F1FF;--card:#fff;--text:#1A1040;--muted:#6B7280;--border:#DDD6FE;--primary:#7C3AED;--plight:#EDE9FE;--orange:#F97316;--cyan:#06B6D4;--green:#10B981;--grad:linear-gradient(135deg,#7C3AED 0%,#A855F7 50%,#EC4899 100%);--display:'Bricolage Grotesque',sans-serif;--body:'Plus Jakarta Sans',sans-serif;--r:20px;--r-sm:12px;}
+[dir="rtl"]{--display:'Noto Sans Arabic',sans-serif;--body:'Noto Sans Arabic',sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 5%;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(124,58,237,.08);box-shadow:0 1px 20px rgba(124,58,237,.06);transition:all .3s;}
+.logo{font-family:var(--display);font-weight:800;font-size:1.5rem;text-decoration:none;letter-spacing:-.03em;}
+.logo em{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
+.logo span{color:var(--text);}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-cta{background:var(--grad)!important;color:#fff!important;padding:.5rem 1.3rem;border-radius:50px;font-weight:600!important;box-shadow:0 4px 15px rgba(124,58,237,.3);}
+.lang-switch{display:flex;align-items:center;gap:.3rem;background:var(--bg);border-radius:50px;padding:.25rem;border:1px solid var(--border);}
+.lang-btn{background:none;border:none;padding:.3rem .65rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;color:var(--muted);font-family:var(--body);transition:all .2s;}
+.lang-btn.active{background:var(--primary);color:#fff;}
+.lang-btn:hover:not(.active){background:var(--plight);color:var(--primary);}
+.ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:.25rem;}
+.ham span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;padding:110px 5% 80px;background:linear-gradient(160deg,#fff 0%,#F4F1FF 60%,#EDE9FE 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);top:-200px;right:-200px;pointer-events:none;}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.08) 0%,transparent 70%);bottom:-100px;left:10%;pointer-events:none;}
+.hero-left{position:relative;z-index:1;}
+.pill-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--plight);border:1px solid var(--border);color:var(--primary);padding:.4rem 1rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.75rem;}
+.pill-dot{width:7px;height:7px;background:var(--primary);border-radius:50%;animation:pop 2s infinite;}
+@keyframes pop{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+h1{font-family:var(--display);font-size:clamp(2.6rem,5vw,4.8rem);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin-bottom:1.4rem;}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;border:none;cursor:pointer;transition:all .22s;font-family:var(--body);}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 6px 20px rgba(124,58,237,.35);}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,.45);}
+.btn-out{background:transparent;color:var(--primary);border:2px solid var(--border);}
+.btn-out:hover{border-color:var(--primary);background:var(--plight);}
+.hero-trust{display:flex;align-items:center;gap:.75rem;margin-top:2rem;}
+.trust-avs{display:flex;}
+.trust-avs img{width:34px;height:34px;border-radius:50%;border:2.5px solid #fff;margin-left:-10px;object-fit:cover;}
+.trust-avs img:first-child{margin-left:0;}
+.trust-text{font-size:.8rem;color:var(--muted);}
+.trust-text strong{color:var(--text);}
+.hero-right{position:relative;z-index:1;}
+.hero-img-wrap{position:relative;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(124,58,237,.2),0 10px 30px rgba(0,0,0,.1);}
+.hero-img-wrap img{width:100%;height:480px;object-fit:cover;display:block;}
+.hfc{position:absolute;background:#fff;border-radius:16px;padding:1rem 1.25rem;box-shadow:0 10px 40px rgba(0,0,0,.12);display:flex;align-items:center;gap:.75rem;}
+.hfc.c1{bottom:-20px;left:-20px;}.hfc.c2{top:20px;right:-20px;}
+.fci{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.fcl{font-size:.72rem;color:var(--muted);}.fcv{font-size:.9rem;font-weight:700;color:var(--text);}
+.logos-strip{background:var(--white);padding:2.5rem 5%;border-bottom:1px solid rgba(124,58,237,.07);text-align:center;}
+.logos-label{font-size:.75rem;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.logo-item{font-family:var(--display);font-weight:700;font-size:1.1rem;color:#C4B5FD;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg);}
+.stat{padding:2.5rem 2rem;text-align:center;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:var(--display);font-size:2.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;}
+.stat-lbl{font-size:.82rem;color:var(--muted);margin-top:.4rem;font-weight:500;}
+section{padding:6rem 5%;}
+.s-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);background:var(--plight);padding:.3rem .8rem;border-radius:50px;margin-bottom:1rem;}
+h2{font-family:var(--display);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:.9rem;}
+.lead{font-size:1rem;color:var(--muted);max-width:540px;line-height:1.75;margin-bottom:3.5rem;}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;}
+.pcard{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid rgba(124,58,237,.09);box-shadow:0 4px 24px rgba(124,58,237,.06);transition:all .3s ease;}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(124,58,237,.15);border-color:rgba(124,58,237,.25);}
+.pcard-img{position:relative;height:200px;overflow:hidden;}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.pcard:hover .pcard-img img{transform:scale(1.05);}
+.pcard-img-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.5) 100%);}
+.pcard-badge{position:absolute;top:1rem;left:1rem;background:#fff;border-radius:50px;padding:.3rem .8rem;font-size:.7rem;font-weight:700;color:var(--primary);letter-spacing:.05em;text-transform:uppercase;}
+.pcard-body{padding:1.75rem;}
+.pcard-name{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem;}
+.pcard-cat{font-size:.78rem;color:var(--primary);font-weight:600;letter-spacing:.04em;margin-bottom:1rem;text-transform:uppercase;}
+.pcard-desc{font-size:.9rem;color:var(--muted);line-height:1.72;margin-bottom:1.25rem;}
+.pcard-feats{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.pcard-feats li{font-size:.83rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem;}
+.pcard-feats li::before{content:'✦';color:var(--primary);font-size:.6rem;margin-top:3px;flex-shrink:0;}
+.services-section{background:var(--bg);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.scard{background:var(--white);border-radius:var(--r);padding:2rem;border:1px solid rgba(124,58,237,.08);transition:all .3s;position:relative;overflow:hidden;}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .3s;}
+.scard:hover{box-shadow:0 12px 40px rgba(124,58,237,.12);transform:translateY(-3px);}
+.scard:hover::before{opacity:1;}
+.scard-num{font-family:var(--display);font-size:3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.2;line-height:1;display:block;margin-bottom:.5rem;}
+.scard-title{font-family:var(--display);font-size:1.05rem;font-weight:700;margin-bottom:.65rem;}
+.scard-desc{font-size:.85rem;color:var(--muted);line-height:1.7;}
+.tech-section{background:var(--white);}
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;}
+.tg-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:1rem;}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem;}
+.pill{background:var(--plight);border:1px solid var(--border);color:var(--primary);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:500;transition:all .2s;cursor:default;}
+.pill:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.pill.or{background:#FFF7ED;border-color:#FED7AA;color:var(--orange);}.pill.or:hover{background:var(--orange);color:#fff;}
+.pill.cy{background:#ECFEFF;border-color:#A5F3FC;color:var(--cyan);}.pill.cy:hover{background:var(--cyan);color:#fff;}
+.pill.gr{background:#ECFDF5;border-color:#A7F3D0;color:var(--green);}.pill.gr:hover{background:var(--green);color:#fff;}
+.about-section{background:linear-gradient(135deg,#1A1040 0%,#2D1B6B 100%);color:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr;max-width:720px;margin:0 auto;}
+.about-img{border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.4);}
+.about-img img{width:100%;height:420px;object-fit:cover;display:block;}
+.about-section .s-tag{background:rgba(255,255,255,.1);color:#C4B5FD;border:none;}
+.about-section h2{color:#fff;}.about-section .lead{color:rgba(255,255,255,.65);}
+.about-vals{display:flex;flex-direction:column;gap:1.25rem;}
+.about-val{display:flex;align-items:flex-start;gap:1rem;}
+.val-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.val-title{font-weight:700;color:#fff;font-size:.92rem;margin-bottom:.2rem;}.val-desc{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.6;}
+.contact-section{background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start;}
+.cinfo{display:flex;flex-direction:column;gap:1.25rem;}
+.citem{display:flex;align-items:center;gap:1rem;}
+.cicon{width:44px;height:44px;border-radius:var(--r-sm);flex-shrink:0;background:var(--plight);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.clbl{font-size:.75rem;color:var(--muted);margin-bottom:.1rem;font-weight:500;}.cval{font-size:.9rem;color:var(--text);font-weight:600;}
+.cform{background:var(--white);border-radius:var(--r);padding:2.5rem;border:1px solid rgba(124,58,237,.08);box-shadow:0 4px 30px rgba(124,58,237,.06);}
+.cform-title{font-family:var(--display);font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem;}
+.fg label{font-size:.8rem;font-weight:600;color:var(--text);}
+.fg input,.fg textarea,.fg select{background:var(--bg);border:1.5px solid var(--border);color:var(--text);padding:.75rem 1rem;border-radius:var(--r-sm);font-size:.88rem;font-family:var(--body);outline:none;transition:all .2s;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(124,58,237,.08);}
+.fg textarea{resize:vertical;min-height:110px;}
+footer{background:var(--text);color:#fff;padding:3rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.flogo{font-family:var(--display);font-size:1.3rem;font-weight:800;}
+.flogo em{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
+.flinks{display:flex;gap:2rem;list-style:none;}
+.flinks a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.84rem;transition:color .2s;}
+.flinks a:hover{color:#fff;}.fcopy{font-size:.78rem;color:rgba(255,255,255,.4);}
+.fi{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.fi.in{opacity:1;transform:translateY(0);}
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:var(--display);font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;}
+.mob-close{position:absolute;top:1.5rem;right:5%;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text);}
+[dir="rtl"] .hero{direction:rtl;}[dir="rtl"] .hero-right{order:-1;}
+[dir="rtl"] .nav-links{flex-direction:row-reverse;}[dir="rtl"] .hero-btns{flex-direction:row-reverse;}
+[dir="rtl"] .hero-trust{flex-direction:row-reverse;}
+[dir="rtl"] .trust-avs img{margin-left:0;margin-right:-10px;}[dir="rtl"] .trust-avs img:first-child{margin-right:0;}
+[dir="rtl"] .hfc.c1{left:auto;right:-20px;}[dir="rtl"] .hfc.c2{right:auto;left:-20px;}
+[dir="rtl"] .pcard-badge{left:auto;right:1rem;}[dir="rtl"] .pcard-feats li{flex-direction:row-reverse;}
+[dir="rtl"] .stat{border-right:none;border-left:1px solid var(--border);}[dir="rtl"] .stat:last-child{border-left:none;}
+[dir="rtl"] .about-val{flex-direction:row-reverse;}[dir="rtl"] .about-grid{direction:rtl;}
+[dir="rtl"] .citem{flex-direction:row-reverse;}[dir="rtl"] footer{direction:rtl;}
+[dir="rtl"] .flinks{flex-direction:row-reverse;}[dir="rtl"] .cform{direction:rtl;text-align:right;}
+[dir="rtl"] .contact-grid,[dir="rtl"] .products-grid{direction:rtl;}[dir="rtl"] .scard{text-align:right;}
+[dir="rtl"] .tech-grid{direction:rtl;}[dir="rtl"] .pills{direction:rtl;}[dir="rtl"] .logos-row{direction:rtl;}
+[dir="rtl"] .lang-switch{flex-direction:row-reverse;}[dir="rtl"] .services-grid{direction:rtl;}
+@media(max-width:1024px){.services-grid{grid-template-columns:repeat(2,1fr);}.tech-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+.nav-links{display:none;}.ham{display:flex;}
+.hero{grid-template-columns:1fr;padding-top:100px;}.hero-right{display:none;}
+h1{font-size:2.6rem;}
+.stats{grid-template-columns:repeat(2,1fr);}
+.products-grid,.services-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+.frow{grid-template-columns:1fr;}
+footer{flex-direction:column;text-align:center;}.flinks{flex-wrap:wrap;justify-content:center;}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="logo"><span>Exim</span><em>ia</em></a>
+  <ul class="nav-links">
+    <li><a href="#products" data-i18n="nav.products">Products</a></li>
+    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+    <li><a href="#technology" data-i18n="nav.technology">Technology</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Start a Project</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" data-lang="ar" onclick="setLang('ar')">ع</button>
+    </div>
+    <button class="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMenu()">✕</button>
+  <a href="#products" onclick="toggleMenu()" data-i18n="nav.products">Products</a>
+  <a href="#services" onclick="toggleMenu()" data-i18n="nav.services">Services</a>
+  <a href="#technology" onclick="toggleMenu()" data-i18n="nav.technology">Technology</a>
+  <a href="#about" onclick="toggleMenu()" data-i18n="nav.about">About</a>
+  <a href="#contact" onclick="toggleMenu()" style="color:var(--primary)" data-i18n="nav.cta">Start a Project</a>
+  <div class="lang-switch"><button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button><button class="lang-btn" data-lang="de" onclick="setLang('de');toggleMenu()">DE</button><button class="lang-btn" data-lang="ar" onclick="setLang('ar');toggleMenu()">ع</button></div>
+</div>
+
+<section class="hero">
+  <div class="hero-left fi in">
+    <div class="pill-badge"><span class="pill-dot"></span><span data-i18n="hero.badge">AI & Agentic Software Company</span></div>
+    <h1><span data-i18n="hero.h1a">Software That</span><br><span class="grad-text" data-i18n="hero.h1b">Thinks, Acts</span><br><span data-i18n="hero.h1c">&amp; Scales.</span></h1>
+    <p class="hero-sub" data-i18n="hero.sub">Eximia builds cutting-edge AI systems, agentic solutions, and intelligent software for enterprise — from 5G telecom analytics to AI-powered content intelligence.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn btn-main" data-i18n="hero.btn1">Explore Products →</a>
+      <a href="#contact" class="btn btn-out" data-i18n="hero.btn2">Start a Project</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-avs"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt=""><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt=""><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt=""></div>
+      <div class="trust-text"><strong data-i18n="hero.trustMain">Trusted by engineers &amp; enterprises</strong><br><span data-i18n="hero.trustSub">across telecom, publishing &amp; AI</span></div>
+    </div>
+  </div>
+  <div class="hero-right fi in" style="transition-delay:.15s">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&q=80" alt="AI Intelligence">
+      <div class="hfc c1"><div class="fci" style="background:#EDE9FE;">🧠</div><div><div class="fcl" data-i18n="hero.fc1lbl">AI Models Active</div><div class="fcv" data-i18n="hero.fc1val">4 Products Live</div></div></div>
+      <div class="hfc c2"><div class="fci" style="background:#FFF7ED;">⚡</div><div><div class="fcl" data-i18n="hero.fc2lbl">Processing Speed</div><div class="fcv" data-i18n="hero.fc2val">Real-time AI</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip">
+  <div class="logos-label" data-i18n="logos.label">Powering intelligence across industries</div>
+  <div class="logos-row"><span class="logo-item" data-i18n="logos.i1">Telecom</span><span class="logo-item" data-i18n="logos.i2">Publishing</span><span class="logo-item" data-i18n="logos.i3">5G Networks</span><span class="logo-item" data-i18n="logos.i4">Digital Media</span><span class="logo-item" data-i18n="logos.i5">Enterprise AI</span></div>
+</div>
+
+<div class="stats">
+  <div class="stat fi"><span class="stat-num">4+</span><div class="stat-lbl" data-i18n="stats.s1">AI Products in Production</div></div>
+  <div class="stat fi"><span class="stat-num">5G</span><div class="stat-lbl" data-i18n="stats.s2">Telecom-Grade Analytics</div></div>
+  <div class="stat fi"><span class="stat-num">AR</span><div class="stat-lbl" data-i18n="stats.s3">Arabic-First AI</div></div>
+  <div class="stat fi"><span class="stat-num">∞</span><div class="stat-lbl" data-i18n="stats.s4">Agentic Possibilities</div></div>
+</div>
+
+<section style="background:var(--white);" id="products">
+  <div class="s-tag" data-i18n="sec.products">✦ Our Products</div>
+  <h2 data-i18n="products.h2">Four Platforms. One Vision.</h2>
+  <p class="lead" data-i18n="products.lead">Specialized AI platforms built to solve the hardest problems in telecom, publishing, and content intelligence.</p>
+  <div class="products-grid">
+    <div class="pcard fi"><div class="pcard-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="NetLens"><div class="pcard-img-ov"></div><span class="pcard-badge" data-i18n="nl.badge">Telecom · 5G</span></div><div class="pcard-body"><div class="pcard-name">NetLens</div><div class="pcard-cat" data-i18n="nl.cat">PCAP Intelligence Platform</div><p class="pcard-desc" data-i18n="nl.desc">AI-powered packet analysis engineered for 5G and core network operators. Deep inspection, automated Root Cause Analysis, and real-time anomaly detection at carrier scale.</p><ul class="pcard-feats"><li><span data-i18n="nl.f1">PCAP ingestion at carrier scale</span></li><li><span data-i18n="nl.f2">Automated Root Cause Analysis (RCA)</span></li><li><span data-i18n="nl.f3">5G NR / Core / RAN / IMS support</span></li><li><span data-i18n="nl.f4">Kafka, Flink &amp; Nokia AVA integration</span></li><li><span data-i18n="nl.f5">3GPP standards-compliant analysis</span></li></ul></div></div>
+    <div class="pcard fi" style="transition-delay:.1s"><div class="pcard-img"><img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=800&q=80" alt="DocFlow"><div class="pcard-img-ov"></div><span class="pcard-badge" data-i18n="df.badge">Publishing · Arabic</span></div><div class="pcard-body"><div class="pcard-name">DocFlow</div><div class="pcard-cat" data-i18n="df.cat">Document Conversion Intelligence</div><p class="pcard-desc" data-i18n="df.desc">Transform Word and PDF documents into publication-ready EPUB. Smart layout detection, full Arabic RTL support, and batch processing built for publishers worldwide.</p><ul class="pcard-feats"><li><span data-i18n="df.f1">Word (.docx) and PDF to EPUB</span></li><li><span data-i18n="df.f2">Full Arabic RTL &amp; bidirectional text</span></li><li><span data-i18n="df.f3">Smart layout and style preservation</span></li><li><span data-i18n="df.f4">Batch processing pipeline</span></li><li><span data-i18n="df.f5">ISBN and metadata management</span></li></ul></div></div>
+    <div class="pcard fi" style="transition-delay:.2s"><div class="pcard-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="CoreLM"><div class="pcard-img-ov"></div><span class="pcard-badge" data-i18n="cl.badge">AI · LLM · Edge</span></div><div class="pcard-body"><div class="pcard-name">CoreLM</div><div class="pcard-cat" data-i18n="cl.cat">Custom Small Language Models</div><p class="pcard-desc" data-i18n="cl.desc">Purpose-built small language models fine-tuned on your domain. Optimized for edge deployment, on-premise, or cloud — full performance without the massive footprint.</p><ul class="pcard-feats"><li><span data-i18n="cl.f1">Domain-specific fine-tuning pipeline</span></li><li><span data-i18n="cl.f2">Edge and on-premise deployment</span></li><li><span data-i18n="cl.f3">Arabic &amp; multilingual support</span></li><li><span data-i18n="cl.f4">Low-latency inference optimization</span></li><li><span data-i18n="cl.f5">HuggingFace ecosystem compatible</span></li></ul></div></div>
+    <div class="pcard fi" style="transition-delay:.3s"><div class="pcard-img"><img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80" alt="Sentinel"><div class="pcard-img-ov"></div><span class="pcard-badge" data-i18n="sn.badge">Content AI · Compliance</span></div><div class="pcard-body"><div class="pcard-name">Sentinel</div><div class="pcard-cat" data-i18n="sn.cat">AI Content Classification &amp; Filtering</div><p class="pcard-desc" data-i18n="sn.desc">AI-driven classification for books, documents, and digital media. Arabic-first design meets multi-language compliance filtering for regional publishing at scale.</p><ul class="pcard-feats"><li><span data-i18n="sn.f1">Book and document classification</span></li><li><span data-i18n="sn.f2">Multi-category content filtering engine</span></li><li><span data-i18n="sn.f3">Arabic morphological analysis</span></li><li><span data-i18n="sn.f4">Real-time and batch processing</span></li><li><span data-i18n="sn.f5">GCP Cloud Run serverless architecture</span></li></ul></div></div>
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="s-tag" data-i18n="sec.services">✦ What We Do</div>
+  <h2 data-i18n="services.h2">Built End-to-End. Deployed in Production.</h2>
+  <p class="lead" data-i18n="services.lead">From architecture to launch — we design, build, and ship intelligent systems that create real competitive advantage.</p>
+  <div class="services-grid">
+    <div class="scard fi"><span class="scard-num">01</span><div class="scard-title" data-i18n="sv1.t">AI System Design</div><p class="scard-desc" data-i18n="sv1.d">Architecture and engineering of AI-native systems — from model selection to production pipelines, built for enterprise scale and reliability.</p></div>
+    <div class="scard fi" style="transition-delay:.08s"><span class="scard-num">02</span><div class="scard-title" data-i18n="sv2.t">Agentic Solutions</div><p class="scard-desc" data-i18n="sv2.d">Autonomous multi-agent workflows that reason, act, and learn. Systems that operate independently to automate complex enterprise processes.</p></div>
+    <div class="scard fi" style="transition-delay:.16s"><span class="scard-num">03</span><div class="scard-title" data-i18n="sv3.t">Custom Software Dev</div><p class="scard-desc" data-i18n="sv3.d">Full-stack engineering tailored to your domain. APIs, data platforms, cloud-native applications, and mobile solutions built with precision.</p></div>
+    <div class="scard fi" style="transition-delay:.24s"><span class="scard-num">04</span><div class="scard-title" data-i18n="sv4.t">Telecom Intelligence</div><p class="scard-desc" data-i18n="sv4.d">AIOps platforms, PCAP analysis, RAN/Core monitoring, and intelligent automation for 5G environments and network operators.</p></div>
+    <div class="scard fi" style="transition-delay:.32s"><span class="scard-num">05</span><div class="scard-title" data-i18n="sv5.t">Language Model Engineering</div><p class="scard-desc" data-i18n="sv5.d">Fine-tuning, evaluation, and deployment of small and large language models. Arabic-first capabilities with multilingual support.</p></div>
+    <div class="scard fi" style="transition-delay:.4s"><span class="scard-num">06</span><div class="scard-title" data-i18n="sv6.t">Data &amp; Streaming</div><p class="scard-desc" data-i18n="sv6.d">Real-time pipelines, data lakes, and analytical dashboards. Transform raw data into decision-grade intelligence with Kafka and Flink.</p></div>
+  </div>
+</section>
+
+<section class="tech-section" id="technology">
+  <div class="s-tag" data-i18n="sec.technology">✦ Technology</div>
+  <h2 data-i18n="tech.h2">The Right Stack for Every Challenge</h2>
+  <p class="lead" data-i18n="tech.lead">Modern, battle-tested, and always chosen for fit — not trend.</p>
+  <div class="tech-grid">
+    <div class="fi"><div class="tg-title" data-i18n="tg1">🤖 AI & Machine Learning</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">HuggingFace</span><span class="pill">LangChain</span><span class="pill">Claude API</span><span class="pill">OpenAI</span><span class="pill">DataRobot</span></div></div>
+    <div class="fi" style="transition-delay:.1s"><div class="tg-title" data-i18n="tg2">🟠 Data & Streaming</div><div class="pills"><span class="pill or">Apache Kafka</span><span class="pill or">Apache Flink</span><span class="pill or">PostgreSQL</span><span class="pill or">Supabase</span><span class="pill or">Firebase</span></div></div>
+    <div class="fi" style="transition-delay:.2s"><div class="tg-title" data-i18n="tg3">☁️ Cloud & Infrastructure</div><div class="pills"><span class="pill cy">Google Cloud</span><span class="pill cy">AWS</span><span class="pill cy">Kubernetes</span><span class="pill cy">Docker</span><span class="pill cy">Cloud Run</span></div></div>
+    <div class="fi" style="transition-delay:.3s"><div class="tg-title" data-i18n="tg4">📡 Telecom</div><div class="pills"><span class="pill gr">5G NR</span><span class="pill gr">3GPP Standards</span><span class="pill gr">PCAP Analysis</span><span class="pill gr">Nokia AVA</span><span class="pill gr">IMS / UPF</span></div></div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="fi" style="transition-delay:.15s">
+      <div class="s-tag" data-i18n="sec.about">✦ About Eximia</div>
+      <h2 data-i18n="about.h2">Exceptional by Design</h2>
+      <p class="lead" data-i18n="about.lead">From the Latin eximius — distinguished and exceptional. That's our standard for every system we ship.</p>
+      <div class="about-vals">
+        <div class="about-val"><div class="val-icon">⚡</div><div><div class="val-title" data-i18n="av1.t">AI-Native Thinking</div><div class="val-desc" data-i18n="av1.d">We don't retrofit AI — intelligence is the foundation, not the afterthought.</div></div></div>
+        <div class="about-val"><div class="val-icon">🌍</div><div><div class="val-title" data-i18n="av2.t">Arabic-First Global Reach</div><div class="val-desc" data-i18n="av2.d">Deep Arabic language expertise paired with multilingual capabilities for global markets.</div></div></div>
+        <div class="about-val"><div class="val-icon">🔒</div><div><div class="val-title" data-i18n="av3.t">Enterprise-Grade Trust</div><div class="val-desc" data-i18n="av3.d">On-premise options, security-conscious architecture, and production-proven systems.</div></div></div>
+        <div class="about-val"><div class="val-icon">🎯</div><div><div class="val-title" data-i18n="av4.t">Domain Precision</div><div class="val-desc" data-i18n="av4.d">Telecom. Publishing. Compliance. We go deep — expertise generalists can't match.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="s-tag" data-i18n="sec.contact">✦ Get In Touch</div>
+      <h2 data-i18n="contact.h2">Let's Build Something Great</h2>
+      <p class="lead" style="margin-bottom:2rem" data-i18n="contact.lead">Tell us your challenge. We'll show you what intelligent software can do.</p>
+      <div class="cinfo">
+        <div class="citem fi"><div class="cicon">✉️</div><div><div class="clbl" data-i18n="c.emailLbl">Email</div><div class="cval">ahmed@e-ximia.com</div></div></div>
+        <div class="citem fi" style="transition-delay:.1s"><div class="cicon">🌐</div><div><div class="clbl" data-i18n="c.webLbl">Website</div><div class="cval">e-ximia.com</div></div></div>
+        <div class="citem fi" style="transition-delay:.2s"><div class="cicon">📍</div><div><div class="clbl" data-i18n="c.locLbl">Location</div><div class="cval" data-i18n="c.locVal">Egypt · Global Delivery</div></div></div>
+      </div>
+    </div>
+    <div class="cform fi">
+      <div class="cform-title" data-i18n="c.formTitle">Start a Conversation 👋</div>
+      <form onsubmit="submitForm(event)">
+        <div class="frow"><div class="fg"><label data-i18n="c.fname">First Name</label><input type="text" data-i18n-ph="c.fnamePh" placeholder="Ahmed" required></div><div class="fg"><label data-i18n="c.lname">Last Name</label><input type="text" placeholder="Elnoamany"></div></div>
+        <div class="fg"><label data-i18n="c.email">Email Address</label><input type="email" placeholder="you@company.com" required></div>
+        <div class="fg"><label data-i18n="c.company">Company</label><input type="text" data-i18n-ph="c.companyPh" placeholder="Your company name"></div>
+        <div class="fg"><label data-i18n="c.interest">Interested In</label><select><option value="" data-i18n="c.iDef">Select a product or service…</option><option>NetLens — Telecom PCAP Intelligence</option><option>DocFlow — Document to EPUB Conversion</option><option>CoreLM — Custom Language Models</option><option>Sentinel — AI Content Classification</option><option data-i18n="c.o5">Custom Software Development</option><option data-i18n="c.o6">Agentic Solutions</option><option data-i18n="c.o7">General Inquiry</option></select></div>
+        <div class="fg"><label data-i18n="c.msgLbl">Tell us about your project</label><textarea data-i18n-ph="c.msgPh" placeholder="Describe your challenge or project goals..."></textarea></div>
+        <button type="submit" class="btn btn-main" id="subBtn" style="width:100%;justify-content:center;" data-i18n="c.submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">Exim<em>ia</em></div>
+  <ul class="flinks"><li><a href="#products" data-i18n="nav.products">Products</a></li><li><a href="#services" data-i18n="nav.services">Services</a></li><li><a href="#technology" data-i18n="nav.technology">Technology</a></li><li><a href="#about" data-i18n="nav.about">About</a></li><li><a href="#contact" data-i18n="nav.cta">Start a Project</a></li></ul>
+  <div class="fcopy" data-i18n="footer.copy">© 2026 Eximia. Intelligent Software &amp; AI Systems.</div>
+</footer>
+
+<script>
+const T={
+en:{'nav.products':'Products','nav.services':'Services','nav.technology':'Technology','nav.about':'About','nav.cta':'Start a Project','hero.badge':'AI & Agentic Software Company','hero.h1a':'Software That','hero.h1b':'Thinks, Acts','hero.h1c':'& Scales.','hero.sub':'Eximia builds cutting-edge AI systems, agentic solutions, and intelligent software for enterprise — from 5G telecom analytics to AI-powered content intelligence.','hero.btn1':'Explore Products →','hero.btn2':'Start a Project','hero.trustMain':'Trusted by engineers & enterprises','hero.trustSub':'across telecom, publishing & AI','hero.fc1lbl':'AI Models Active','hero.fc1val':'4 Products Live','hero.fc2lbl':'Processing Speed','hero.fc2val':'Real-time AI','logos.label':'Powering intelligence across industries','logos.i1':'Telecom','logos.i2':'Publishing','logos.i3':'5G Networks','logos.i4':'Digital Media','logos.i5':'Enterprise AI','stats.s1':'AI Products in Production','stats.s2':'Telecom-Grade Analytics','stats.s3':'Arabic-First AI','stats.s4':'Agentic Possibilities','sec.products':'✦ Our Products','sec.services':'✦ What We Do','sec.technology':'✦ Technology','sec.about':'✦ About Eximia','sec.contact':'✦ Get In Touch','products.h2':'Four Platforms. One Vision.','products.lead':'Specialized AI platforms built to solve the hardest problems in telecom, publishing, and content intelligence.','nl.badge':'Telecom · 5G','nl.cat':'PCAP Intelligence Platform','nl.desc':'AI-powered packet analysis engineered for 5G and core network operators. Deep inspection, automated Root Cause Analysis, and real-time anomaly detection at carrier scale.','nl.f1':'PCAP ingestion at carrier scale','nl.f2':'Automated Root Cause Analysis (RCA)','nl.f3':'5G NR / Core / RAN / IMS support','nl.f4':'Kafka, Flink & Nokia AVA integration','nl.f5':'3GPP standards-compliant analysis','df.badge':'Publishing · Arabic','df.cat':'Document Conversion Intelligence','df.desc':'Transform Word and PDF documents into publication-ready EPUB. Smart layout detection, full Arabic RTL support, and batch processing built for publishers worldwide.','df.f1':'Word (.docx) and PDF to EPUB','df.f2':'Full Arabic RTL & bidirectional text','df.f3':'Smart layout and style preservation','df.f4':'Batch processing pipeline','df.f5':'ISBN and metadata management','cl.badge':'AI · LLM · Edge','cl.cat':'Custom Small Language Models','cl.desc':'Purpose-built small language models fine-tuned on your domain. Optimized for edge deployment, on-premise, or cloud — full performance without the massive footprint.','cl.f1':'Domain-specific fine-tuning pipeline','cl.f2':'Edge and on-premise deployment','cl.f3':'Arabic & multilingual support','cl.f4':'Low-latency inference optimization','cl.f5':'HuggingFace ecosystem compatible','sn.badge':'Content AI · Compliance','sn.cat':'AI Content Classification & Filtering','sn.desc':'AI-driven classification for books, documents, and digital media. Arabic-first design meets multi-language compliance filtering for regional publishing at scale.','sn.f1':'Book and document classification','sn.f2':'Multi-category content filtering engine','sn.f3':'Arabic morphological analysis','sn.f4':'Real-time and batch processing','sn.f5':'GCP Cloud Run serverless architecture','services.h2':'Built End-to-End. Deployed in Production.','services.lead':'From architecture to launch — we design, build, and ship intelligent systems that create real competitive advantage.','sv1.t':'AI System Design','sv1.d':'Architecture and engineering of AI-native systems — from model selection to production pipelines, built for enterprise scale and reliability.','sv2.t':'Agentic Solutions','sv2.d':'Autonomous multi-agent workflows that reason, act, and learn. Systems that operate independently to automate complex enterprise processes.','sv3.t':'Custom Software Dev','sv3.d':'Full-stack engineering tailored to your domain. APIs, data platforms, cloud-native applications, and mobile solutions built with precision.','sv4.t':'Telecom Intelligence','sv4.d':'AIOps platforms, PCAP analysis, RAN/Core monitoring, and intelligent automation for 5G environments and network operators.','sv5.t':'Language Model Engineering','sv5.d':'Fine-tuning, evaluation, and deployment of small and large language models. Arabic-first capabilities with multilingual support.','sv6.t':'Data & Streaming','sv6.d':'Real-time pipelines, data lakes, and analytical dashboards. Transform raw data into decision-grade intelligence with Kafka and Flink.','tech.h2':'The Right Stack for Every Challenge','tech.lead':'Modern, battle-tested, and always chosen for fit — not trend.','tg1':'🤖 AI & Machine Learning','tg2':'🟠 Data & Streaming','tg3':'☁️ Cloud & Infrastructure','tg4':'📡 Telecom','about.h2':'Exceptional by Design','about.lead':"From the Latin eximius — distinguished and exceptional. That's our standard for every system we ship.",'av1.t':'AI-Native Thinking','av1.d':"We don't retrofit AI — intelligence is the foundation, not the afterthought.",'av2.t':'Arabic-First Global Reach','av2.d':'Deep Arabic language expertise paired with multilingual capabilities for global markets.','av3.t':'Enterprise-Grade Trust','av3.d':'On-premise options, security-conscious architecture, and production-proven systems.','av4.t':'Domain Precision','av4.d':"Telecom. Publishing. Compliance. We go deep — expertise generalists can't match.",'contact.h2':"Let's Build Something Great",'contact.lead':"Tell us your challenge. We'll show you what intelligent software can do.",'c.emailLbl':'Email','c.webLbl':'Website','c.locLbl':'Location','c.locVal':'Egypt · Global Delivery','c.formTitle':'Start a Conversation 👋','c.fname':'First Name','c.fnamePh':'Ahmed','c.lname':'Last Name','c.email':'Email Address','c.company':'Company','c.companyPh':'Your company name','c.interest':'Interested In','c.iDef':'Select a product or service…','c.o5':'Custom Software Development','c.o6':'Agentic Solutions','c.o7':'General Inquiry','c.msgLbl':'Tell us about your project','c.msgPh':'Describe your challenge or project goals...','c.submit':'Send Message →','c.ok':'✓ Message Sent!','footer.copy':'© 2026 Eximia. Intelligent Software & AI Systems.'},
+de:{'nav.products':'Produkte','nav.services':'Leistungen','nav.technology':'Technologie','nav.about':'Über uns','nav.cta':'Projekt starten','hero.badge':'KI & Agentische Softwareunternehmen','hero.h1a':'Software die','hero.h1b':'denkt, handelt','hero.h1c':'und skaliert.','hero.sub':'Eximia entwickelt modernste KI-Systeme, agentische Lösungen und intelligente Unternehmenssoftware — von 5G-Telekommunikationsanalysen bis zur KI-gestützten Content-Intelligenz.','hero.btn1':'Produkte entdecken →','hero.btn2':'Projekt starten','hero.trustMain':'Vertraut von Ingenieuren & Unternehmen','hero.trustSub':'in Telekommunikation, Verlagswesen & KI','hero.fc1lbl':'Aktive KI-Modelle','hero.fc1val':'4 Produkte live','hero.fc2lbl':'Verarbeitungsgeschwindigkeit','hero.fc2val':'Echtzeit-KI','logos.label':'Intelligenz in verschiedenen Branchen','logos.i1':'Telekommunikation','logos.i2':'Verlagswesen','logos.i3':'5G-Netze','logos.i4':'Digitale Medien','logos.i5':'Unternehmens-KI','stats.s1':'KI-Produkte in Betrieb','stats.s2':'Telekom-Analytics','stats.s3':'Arabisch-First KI','stats.s4':'Agentische Möglichkeiten','sec.products':'✦ Unsere Produkte','sec.services':'✦ Was wir tun','sec.technology':'✦ Technologie','sec.about':'✦ Über Eximia','sec.contact':'✦ Kontakt','products.h2':'Vier Plattformen. Eine Vision.','products.lead':'Spezialisierte KI-Plattformen für die schwierigsten Herausforderungen in Telekommunikation, Verlagswesen und Content-Intelligenz.','nl.badge':'Telekommunikation · 5G','nl.cat':'PCAP-Intelligenzplattform','nl.desc':'KI-gestützte Paketanalyse für 5G- und Core-Netzwerkbetreiber. Tiefe Paketinspektion, automatisierte Ursachenanalyse und Echtzeit-Anomalieerkennung auf Carrier-Skala.','nl.f1':'PCAP-Erfassung auf Carrier-Skala','nl.f2':'Automatisierte Ursachenanalyse (RCA)','nl.f3':'5G NR / Core / RAN / IMS-Unterstützung','nl.f4':'Kafka, Flink & Nokia AVA Integration','nl.f5':'3GPP-konforme Analyse','df.badge':'Verlagswesen · Arabisch','df.cat':'Dokumentenkonvertierungsplattform','df.desc':'Word- und PDF-Dokumente in publikationsreife EPUB-Formate umwandeln. Intelligente Layout-Erkennung, vollständige arabische RTL-Unterstützung und Batch-Verarbeitung für Publisher weltweit.','df.f1':'Word (.docx) und PDF zu EPUB','df.f2':'Vollständiges Arabisch RTL & bidirektionaler Text','df.f3':'Intelligente Layout- und Stilerhaltung','df.f4':'Batch-Verarbeitungspipeline','df.f5':'ISBN- und Metadatenverwaltung','cl.badge':'KI · LLM · Edge','cl.cat':'Benutzerdefinierte Sprachmodelle','cl.desc':'Zweckgebaute kleine Sprachmodelle, auf Ihre Domäne abgestimmt. Optimiert für Edge-Deployment, On-Premise oder Cloud — maximale Leistung ohne großen Footprint.','cl.f1':'Domänenspezifische Fine-Tuning-Pipeline','cl.f2':'Edge- und On-Premise-Deployment','cl.f3':'Arabisch & mehrsprachige Unterstützung','cl.f4':'Niedriglatenz-Inferenz-Optimierung','cl.f5':'HuggingFace-kompatibel','sn.badge':'Content KI · Compliance','sn.cat':'KI-Inhaltsklassifizierung & Filterung','sn.desc':'KI-gesteuerte Klassifizierung für Bücher, Dokumente und digitale Medien. Arabisch-First-Design für regionale Publishing-Compliance-Filterung.','sn.f1':'Buch- und Dokumentklassifizierung','sn.f2':'Mehrkategorien-Inhaltsfilter','sn.f3':'Arabische morphologische Analyse','sn.f4':'Echtzeit- und Batch-Verarbeitung','sn.f5':'GCP Cloud Run serverlose Architektur','services.h2':'Von Anfang bis Ende. In der Produktion.','services.lead':'Von der Architektur bis zum Launch — wir entwickeln, bauen und liefern intelligente Systeme, die echte Wettbewerbsvorteile schaffen.','sv1.t':'KI-Systemdesign','sv1.d':'Architektur und Engineering von KI-nativen Systemen — von der Modellauswahl bis zu Produktions-Pipelines, für Unternehmens-Skalierung gebaut.','sv2.t':'Agentische Lösungen','sv2.d':'Autonome Multi-Agenten-Workflows die denken, handeln und lernen. Systeme die selbstständig komplexe Unternehmensprozesse automatisieren.','sv3.t':'Software-Entwicklung','sv3.d':'Full-Stack-Engineering für Ihre Domäne. APIs, Datenplattformen, Cloud-native Anwendungen und Mobile-Lösungen mit Präzision gebaut.','sv4.t':'Telekommunikations-Intelligenz','sv4.d':'AIOps-Plattformen, PCAP-Analyse, RAN/Core-Monitoring und intelligente Automatisierung für 5G-Umgebungen und Netzwerkbetreiber.','sv5.t':'Sprachmodell-Engineering','sv5.d':'Fine-Tuning, Evaluierung und Deployment von kleinen und großen Sprachmodellen. Arabisch-First-Fähigkeiten mit mehrsprachiger Unterstützung.','sv6.t':'Daten & Streaming','sv6.d':'Echtzeit-Pipelines, Data Lakes und analytische Dashboards. Rohdaten mit Kafka und Flink in entscheidungsreife Intelligenz verwandeln.','tech.h2':'Der richtige Stack für jede Herausforderung','tech.lead':'Modern, bewährt und immer nach Bedarf — nicht nach Trend gewählt.','tg1':'🤖 KI & Maschinelles Lernen','tg2':'🟠 Daten & Streaming','tg3':'☁️ Cloud & Infrastruktur','tg4':'📡 Telekommunikation','about.h2':'Außergewöhnlich von Grund auf','about.lead':'Vom lateinischen eximius — ausgezeichnet und außergewöhnlich. Das ist unser Standard für jedes System das wir entwickeln.','av1.t':'KI-natives Denken','av1.d':'Wir fügen KI nicht nachträglich hinzu — Intelligenz ist die Grundlage, nicht der Nachgedanke.','av2.t':'Arabisch-First, global','av2.d':'Tiefe Arabisch-Sprachexpertise gepaart mit mehrsprachigen Fähigkeiten für globale Märkte.','av3.t':'Enterprise-Qualität','av3.d':'On-Premise-Optionen, sicherheitsbewusste Architektur und produktionsbewährte Systeme.','av4.t':'Domänen-Präzision','av4.d':'Telekommunikation. Verlagswesen. Compliance. Wir gehen in die Tiefe — Expertise die Generalisten nicht bieten können.','contact.h2':'Lass uns etwas Großartiges bauen','contact.lead':'Erzählen Sie uns Ihre Herausforderung. Wir zeigen Ihnen, was intelligente Software leisten kann.','c.emailLbl':'E-Mail','c.webLbl':'Website','c.locLbl':'Standort','c.locVal':'Ägypten · Globale Lieferung','c.formTitle':'Gespräch beginnen 👋','c.fname':'Vorname','c.fnamePh':'Ahmed','c.lname':'Nachname','c.email':'E-Mail-Adresse','c.company':'Unternehmen','c.companyPh':'Ihr Unternehmensname','c.interest':'Interesse an','c.iDef':'Produkt oder Service wählen…','c.o5':'Software-Entwicklung','c.o6':'Agentische Lösungen','c.o7':'Allgemeine Anfrage','c.msgLbl':'Erzählen Sie uns von Ihrem Projekt','c.msgPh':'Beschreiben Sie Ihre Herausforderung oder Projektziele...','c.submit':'Nachricht senden →','c.ok':'✓ Nachricht gesendet!','footer.copy':'© 2026 Eximia. Intelligente Software & KI-Systeme.'},
+ar:{'nav.products':'المنتجات','nav.services':'الخدمات','nav.technology':'التكنولوجيا','nav.about':'عن الشركة','nav.cta':'ابدأ مشروعك','hero.badge':'شركة البرمجيات الذكية والوكيلة','hero.h1a':'برمجيات','hero.h1b':'تفكر، تتصرف','hero.h1c':'وتتوسع.','hero.sub':'تبني إكسيميا أنظمة ذكاء اصطناعي متطورة وحلولاً وكيلة وبرمجيات ذكية للمؤسسات — من تحليلات شبكات الجيل الخامس إلى ذكاء المحتوى المدعوم بالذكاء الاصطناعي.','hero.btn1':'← استكشف المنتجات','hero.btn2':'ابدأ مشروعك','hero.trustMain':'موثوق به من المهندسين والمؤسسات','hero.trustSub':'في الاتصالات والنشر والذكاء الاصطناعي','hero.fc1lbl':'نماذج الذكاء الاصطناعي','hero.fc1val':'٤ منتجات مباشرة','hero.fc2lbl':'سرعة المعالجة','hero.fc2val':'ذكاء اصطناعي فوري','logos.label':'نحرك الذكاء عبر الصناعات','logos.i1':'الاتصالات','logos.i2':'النشر','logos.i3':'شبكات 5G','logos.i4':'الإعلام الرقمي','logos.i5':'ذكاء اصطناعي مؤسسي','stats.s1':'منتجات ذكاء اصطناعي في الإنتاج','stats.s2':'تحليلات الاتصالات','stats.s3':'ذكاء اصطناعي عربي أولاً','stats.s4':'إمكانيات لا محدودة','sec.products':'✦ منتجاتنا','sec.services':'✦ ما نفعله','sec.technology':'✦ التكنولوجيا','sec.about':'✦ عن إكسيميا','sec.contact':'✦ تواصل معنا','products.h2':'أربع منصات. رؤية واحدة.','products.lead':'منصات ذكاء اصطناعي متخصصة مبنية لحل أصعب المشكلات في الاتصالات والنشر وذكاء المحتوى.','nl.badge':'اتصالات · 5G','nl.cat':'منصة تحليل حزم البيانات','nl.desc':'منصة تحليل حزم البيانات المدعومة بالذكاء الاصطناعي لمشغلي شبكات الجيل الخامس. فحص عميق وتحليل تلقائي للسبب الجذري واكتشاف الشذوذات فوري على نطاق المشغلين.','nl.f1':'استيعاب حزم البيانات بحجم المشغلين','nl.f2':'تحليل تلقائي للسبب الجذري (RCA)','nl.f3':'دعم 5G NR / النواة / RAN / IMS','nl.f4':'تكامل مع Kafka وFlink وNokia AVA','nl.f5':'تحليل متوافق مع معايير 3GPP','df.badge':'النشر · العربية','df.cat':'ذكاء تحويل المستندات','df.desc':'تحويل مستندات Word وPDF إلى صيغة EPUB جاهزة للنشر. كشف ذكي للتخطيط، دعم كامل للغة العربية، ومعالجة دفعية للناشرين حول العالم.','df.f1':'تحويل Word وPDF إلى EPUB','df.f2':'دعم كامل للعربية RTL والنص ثنائي الاتجاه','df.f3':'الحفاظ الذكي على التخطيط والأنماط','df.f4':'خط أنابيب المعالجة الدفعية','df.f5':'إدارة ISBN والبيانات الوصفية','cl.badge':'ذكاء اصطناعي · نماذج · Edge','cl.cat':'نماذج لغوية صغيرة مخصصة','cl.desc':'نماذج لغوية صغيرة مبنية خصيصاً ومضبوطة دقيقاً لمجالك. محسّنة للنشر على الحافة أو المحلي أو السحابي.','cl.f1':'خط أنابيب الضبط الدقيق المخصص','cl.f2':'النشر على الحافة والمحلي','cl.f3':'دعم العربية ومتعدد اللغات','cl.f4':'تحسين الاستدلال بزمن انتقال منخفض','cl.f5':'متوافق مع نظام HuggingFace','sn.badge':'ذكاء المحتوى · الامتثال','sn.cat':'تصنيف وتصفية المحتوى بالذكاء الاصطناعي','sn.desc':'تصنيف المحتوى وتصفيته بالذكاء الاصطناعي للكتب والمستندات والإعلام الرقمي. تصميم عربي أولاً مع دعم متعدد اللغات للامتثال الإقليمي.','sn.f1':'تصنيف الكتب والمستندات','sn.f2':'محرك تصفية متعدد الفئات','sn.f3':'تحليل صرفي للغة العربية','sn.f4':'معالجة فورية ودفعية','sn.f5':'بنية GCP Cloud Run بدون خادم','services.h2':'من البداية إلى النهاية. في بيئة الإنتاج.','services.lead':'من التصميم المعماري إلى الإطلاق — نصمم ونبني ونشحن أنظمة ذكية تخلق ميزة تنافسية حقيقية.','sv1.t':'تصميم أنظمة الذكاء الاصطناعي','sv1.d':'هندسة أنظمة مبنية أصلاً على الذكاء الاصطناعي — من اختيار النموذج إلى خطوط الإنتاج، مصممة للنطاق المؤسسي والموثوقية.','sv2.t':'الحلول الوكيلة','sv2.d':'سير عمل متعدد الوكلاء المستقل الذي يفكر ويتصرف ويتعلم. أنظمة تعمل باستقلالية لأتمتة العمليات المؤسسية المعقدة.','sv3.t':'تطوير البرمجيات المخصصة','sv3.d':'هندسة متكاملة مصممة لمجالك. واجهات برمجية ومنصات بيانات وتطبيقات سحابية وحلول متنقلة مبنية بدقة.','sv4.t':'ذكاء الاتصالات','sv4.d':'منصات AIOps وتحليل PCAP ومراقبة RAN/النواة وأتمتة ذكية لبيئات شبكات الجيل الخامس.','sv5.t':'هندسة النماذج اللغوية','sv5.d':'ضبط دقيق وتقييم ونشر نماذج لغوية صغيرة وكبيرة. قدرات عربية أولاً مع دعم متعدد اللغات.','sv6.t':'البيانات والبث','sv6.d':'خطوط أنابيب في الوقت الفعلي وبحيرات البيانات ولوحات التحليل. تحويل البيانات الخام إلى ذكاء قابل للتنفيذ باستخدام Kafka وFlink.','tech.h2':'المجموعة التقنية الصحيحة لكل تحدٍّ','tech.lead':'حديثة ومجربة في الإنتاج — نختار التكنولوجيا التي تناسب احتياجاتك.','tg1':'🤖 الذكاء الاصطناعي والتعلم الآلي','tg2':'🟠 البيانات والبث','tg3':'☁️ السحابة والبنية التحتية','tg4':'📡 الاتصالات','about.h2':'استثنائيون بالتصميم','about.lead':'من اللاتينية eximius — متميز واستثنائي. هذا هو معيارنا لكل نظام نطلقه.','av1.t':'تفكير أصيل بالذكاء الاصطناعي','av1.d':'لا نضيف الذكاء الاصطناعي لاحقاً — الذكاء هو الأساس وليس الفكرة العرضية.','av2.t':'عربي أولاً، وصول عالمي','av2.d':'خبرة عميقة في اللغة العربية مقرونة بقدرات متعددة اللغات للأسواق العالمية.','av3.t':'ثقة على مستوى المؤسسات','av3.d':'خيارات النشر المحلي وهندسة واعية بالأمان وأنظمة مجربة في بيئات الإنتاج.','av4.t':'دقة في المجال','av4.d':'الاتصالات. النشر. الامتثال. نذهب إلى العمق — خبرة لا يستطيع المعمميون تقديمها.','contact.h2':'لنبنِ شيئاً رائعاً معاً','contact.lead':'أخبرنا بتحديك. سنريك ما تستطيع البرمجيات الذكية تحقيقه.','c.emailLbl':'البريد الإلكتروني','c.webLbl':'الموقع الإلكتروني','c.locLbl':'الموقع الجغرافي','c.locVal':'مصر · تسليم عالمي','c.formTitle':'ابدأ محادثة 👋','c.fname':'الاسم الأول','c.fnamePh':'أحمد','c.lname':'اسم العائلة','c.email':'البريد الإلكتروني','c.company':'الشركة','c.companyPh':'اسم شركتك','c.interest':'اهتمامك','c.iDef':'اختر منتجاً أو خدمة…','c.o5':'تطوير برمجيات مخصصة','c.o6':'حلول وكيلة','c.o7':'استفسار عام','c.msgLbl':'أخبرنا عن مشروعك','c.msgPh':'صف تحديك أو أهداف مشروعك...','c.submit':'← إرسال الرسالة','c.ok':'✓ تم إرسال الرسالة!','footer.copy':'© 2026 إكسيميا. برمجيات ذكية وأنظمة ذكاء اصطناعي.'}
+};
+let currentLang='en';
+function setLang(lang){
+  currentLang=lang;
+  const t=T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(t[k]!==undefined)el.placeholder=t[k];});
+  const html=document.documentElement;
+  html.dir=lang==='ar'?'rtl':'ltr';html.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  const titles={en:'Eximia — Intelligent Software & AI Systems',de:'Eximia — Intelligente Software & KI-Systeme',ar:'إكسيميا — برمجيات ذكية وأنظمة ذكاء اصطناعي'};
+  document.title=titles[lang];
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('nav').style.boxShadow=window.scrollY>40?'0 4px 30px rgba(124,58,237,.1)':'0 1px 20px rgba(124,58,237,.06)';});
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('subBtn');
+  btn.textContent=T[currentLang]['c.ok']||'✓ Sent!';
+  btn.style.background='linear-gradient(135deg,#10B981,#059669)';btn.disabled=true;
+  setTimeout(()=>{btn.textContent=T[currentLang]['c.submit'];btn.style.background='';btn.disabled=false;e.target.reset();},3500);
+}
+</script>
+</body>
+</html>
