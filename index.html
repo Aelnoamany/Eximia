@@ -348,12 +348,12 @@ footer{flex-direction:column;text-align:center;}.flinks{flex-wrap:wrap;justify-c
     </div>
     <div class="cform fi">
       <div class="cform-title" data-i18n="c.formTitle">Start a Conversation 👋</div>
-      <form action="mailto:info@e-ximia.com" method="post" enctype="text/plain" onsubmit="submitForm(event)">
-        <div class="frow"><div class="fg"><label data-i18n="c.fname">First Name</label><input type="text" data-i18n-ph="c.fnamePh" placeholder="Ahmed" required></div><div class="fg"><label data-i18n="c.lname">Last Name</label><input type="text" placeholder="Rabie"></div></div>
-        <div class="fg"><label data-i18n="c.email">Email Address</label><input type="email" placeholder="you@company.com" required></div>
-        <div class="fg"><label data-i18n="c.company">Company</label><input type="text" data-i18n-ph="c.companyPh" placeholder="Your company name"></div>
-        <div class="fg"><label data-i18n="c.interest">Interested In</label><select><option value="" data-i18n="c.iDef">Select a product or service…</option><option>NetLens — Telecom PCAP Intelligence</option><option>DocFlow — Document to EPUB Conversion</option><option>CoreLM — Custom Language Models</option><option>Sentinel — AI Content Classification</option><option data-i18n="c.o5">Custom Software Development</option><option data-i18n="c.o6">Agentic Solutions</option><option data-i18n="c.o7">General Inquiry</option></select></div>
-        <div class="fg"><label data-i18n="c.msgLbl">Tell us about your project</label><textarea data-i18n-ph="c.msgPh" placeholder="Describe your challenge or project goals..."></textarea></div>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="frow"><div class="fg"><label data-i18n="c.fname">First Name</label><input type="text" name="firstName" data-i18n-ph="c.fnamePh" placeholder="Ahmed" required></div><div class="fg"><label data-i18n="c.lname">Last Name</label><input type="text" name="lastName" placeholder="Rabie"></div></div>
+        <div class="fg"><label data-i18n="c.email">Email Address</label><input type="email" name="email" placeholder="you@company.com" required></div>
+        <div class="fg"><label data-i18n="c.company">Company</label><input type="text" name="company" data-i18n-ph="c.companyPh" placeholder="Your company name"></div>
+        <div class="fg"><label data-i18n="c.interest">Interested In</label><select name="interest"><option value="" data-i18n="c.iDef">Select a product or service…</option><option>NetLens — Telecom PCAP Intelligence</option><option>DocFlow — Document to EPUB Conversion</option><option>CoreLM — Custom Language Models</option><option>Sentinel — AI Content Classification</option><option data-i18n="c.o5">Custom Software Development</option><option data-i18n="c.o6">Agentic Solutions</option><option data-i18n="c.o7">General Inquiry</option></select></div>
+        <div class="fg"><label data-i18n="c.msgLbl">Tell us about your project</label><textarea name="message" data-i18n-ph="c.msgPh" placeholder="Describe your challenge or project goals..."></textarea></div>
         <button type="submit" class="btn btn-main" id="subBtn" style="width:100%;justify-content:center;" data-i18n="c.submit">Send Message →</button>
       </form>
     </div>
@@ -399,9 +399,26 @@ function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open'
 function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('subBtn');
-  btn.textContent=T[currentLang]['c.ok']||'✓ Sent!';
-  btn.style.background='linear-gradient(135deg,#10B981,#059669)';btn.disabled=true;
-  setTimeout(()=>{btn.textContent=T[currentLang]['c.submit'];btn.style.background='';btn.disabled=false;e.target.reset();},3500);
+  const form=document.getElementById('contactForm');
+  btn.textContent='Sending…';btn.disabled=true;
+  fetch('https://formspree.io/f/mbdbknop',{
+    method:'POST',
+    body:new FormData(form),
+    headers:{Accept:'application/json'}
+  }).then(r=>{
+    if(r.ok){
+      btn.textContent=T[currentLang]['c.ok']||'✓ Sent!';
+      btn.style.background='linear-gradient(135deg,#10B981,#059669)';
+      form.reset();
+      setTimeout(()=>{btn.textContent=T[currentLang]['c.submit'];btn.style.background='';btn.disabled=false;},3500);
+    } else {
+      btn.textContent='Error — try again';btn.style.background='#EF4444';
+      setTimeout(()=>{btn.textContent=T[currentLang]['c.submit'];btn.style.background='';btn.disabled=false;},3000);
+    }
+  }).catch(()=>{
+    btn.textContent='Error — try again';btn.style.background='#EF4444';
+    setTimeout(()=>{btn.textContent=T[currentLang]['c.submit'];btn.style.background='';btn.disabled=false;},3000);
+  });
 }
 function initCookies(){if(!localStorage.getItem('cookieConsent')){setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'),900);}}
 function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookieBanner').classList.remove('show');}
